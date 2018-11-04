@@ -1,0 +1,17 @@
+---
+- hosts: local
+  become: yes
+  become_method: sudo
+  handlers:
+    - name: stop nginx
+      service:
+        name: nginx
+        state: stopped
+
+  tasks:
+    - name: Uninstall nginx
+      apt:
+        name=nginx
+        state=absent
+        autoremove=yes
+        purge=yes
